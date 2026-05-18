@@ -1,3 +1,5 @@
+import numpy as np
+
 #physics
 Lwall = 0.0005 #thickness of bag wall in meters
 kwall = 0.19 #thermal conductivity of bag wall
@@ -32,7 +34,27 @@ H_init = 0.1 #initial hemolysis level in % (assumed)
 A_hem = 1e-5 #pre-exponential factor for thermal hemolysis (1/s)
 
 #tuning parameters
-W_atp = 0.4 #weight for ATP in cost function
-W_hem = 0.6 #weight for hemolysis in cost function
+W_atp = 1 #weight for ATP in cost function
+W_hem = 0.8 #weight for hemolysis in cost function
 LAMBDA = 10 #sigmoid steepness for cost function
 S_crit = 1 #critical stress
+
+#controls method variables
+
+dt =1 #timestep in seconds
+total_hours = 20 
+time = np.arange(0, total_hours * 3600, dt) #time vector in seconds
+
+# ATP depletion
+A1 = 1e-7
+Ea1 = 50000
+
+# Potassium leakage
+A2 = 1e-6
+Ea2 = 45000
+
+# Hemolysis
+A3 = 5e-5
+Ea3 = 55000
+
+W_potassium = 0.4
